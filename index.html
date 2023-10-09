@@ -1,0 +1,3473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ConnectiVerse</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <style>
+
+
+        body
+        {
+            font-family: Arial, Helvetica, san-serif;
+        }
+
+
+        body.light-theme
+        {
+            background-color: #f3f3f3;
+        }
+
+        body.dark-theme
+        {
+            background-color: #252525;
+            color: white;
+        }
+
+
+
+    /*Header Styling*/
+     .fixed-header
+{
+  display: flex;
+  align-items: center;
+   justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+         width: 100%;
+         height: 50px;
+  color: white;
+  padding: 15px;
+  z-index: 1000;
+  margin-left: auto;
+}
+
+
+body.light-theme .fixed-header
+{
+      background-color: #0A3B47;
+}
+
+body.dark-theme .fixed-header
+{
+    background-color: #191919;
+}
+
+
+.fixed-header img{
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+}
+/*Right section in header*/
+.right-section
+{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 5%;
+}
+
+
+#themeToggleButton
+{
+    border: none;
+    background: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#themeToggleButton:hover
+{
+    rotate: 340deg;
+}
+
+    /*Header Style ends here*/
+
+
+/*Left hand Navigation*/
+.navbar
+{
+  display: flex;
+  flex-direction: column; /* Buttons stack vertically */
+  padding: 30px;
+  width: 15%;
+  position: fixed;
+  left: 0;
+  top: 100px;
+  height: calc(100% - 60px); /* Take header height into account */
+  overflow-y: auto; /* Allows scrolling if content overflows */
+  z-index: 999; /* Optional, to set stacking order */
+}
+
+
+
+body.light-theme .navbar {
+    background-color: #f3f3f3;
+}
+
+body.dark-theme .navbar {
+    background-color: #252525;
+}
+
+
+.nav-button, .logout-button
+{
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 20px; /* Space between buttons */
+    font-size: 15px;
+    flex-direction: row;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+body.light-theme .nav-button:hover
+{
+    opacity: 0.8;
+    background-color: #ddd;
+}
+
+body.dark-theme .nav-button:hover
+{
+    opacity: 0.8;
+    background-color: #4d4b4b;
+}
+
+
+
+body.dark-theme .nav-button
+{
+    color: white;
+}
+
+
+.logout-button {
+    background-color: #f00;
+    color: #fff;
+}
+
+.logout-button:hover
+{
+    opacity: 0.8;
+}
+
+#home-icon, #settings-icon, #profile-icon, #logout-icon {
+    font-size: 100%;
+
+}
+
+.icon-wrapper {
+        width: 30px;
+        display: inline-block;
+        margin-right: 10px;
+        font-size: 20px;
+      }
+
+
+      .button-text {
+            display: inline-block; /* Text beside the icon */
+        }
+
+
+#menu-icon
+{
+    visibility: visible;
+    color: white;
+    font-size: 24px;
+}
+
+
+        /* Medium screen: Only show icons */
+        @media only screen and (max-width: 900px)
+        {
+            .button-text
+            {
+                display: none; /* Hide the text */
+            }
+            .navbar
+            {
+                width: 10%;
+            }
+            .social-button-text
+            {
+                display: none;
+            }
+            .chat-box
+            {
+                width: 220px;
+                height: 300px;
+
+            }
+        }
+
+        /* Small screen: Show menu icon */
+        @media only screen and (max-width: 480px) {
+            .navbar
+            {
+                visibility: hidden;
+            }
+            #menu-icon
+            {
+              visibility: visible;
+            }
+            .navbar
+            {
+                width: 5%;
+            }
+
+        }
+
+
+body.dark-theme .nav-button-active
+{
+    background-color: #4d4b4b;
+}
+
+body.light-theme .nav-button-active
+{
+    background-color: #ddd;
+}
+
+/*LEFT HAND NAV BAR ENDS HERE!*/
+
+/*Notifications*/
+.notification-area {
+    display: flex;
+  align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+
+
+.notification-box {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 250px;
+    height: 300px;
+    margin-right: 10%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: auto;
+    z-index: 999; /* To make sure it appears above other content */
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+.notification-text {
+  margin-right: 10px;
+}
+
+.notification-header {
+    position: relative;
+}
+
+
+.notification-count {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 3px;
+    font-size: 10px;
+    position: absolute;
+    top: -5px;
+    right: -7px;
+}
+
+
+
+.notification-box .notification
+{
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.notification-box .notification:hover
+{
+    opacity: 0.7;
+}
+
+
+.notification-box img
+{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.notification-box .message
+{
+  flex-grow: 1;
+  color: #333333;
+}
+
+
+body.dark-theme .notification-box .message
+{
+    color: white;
+}
+
+
+
+
+.notification-box .remove-button
+{
+  cursor: pointer;
+  color: #f00;
+}
+
+/*Search bar*/
+.search-area {
+    max-width: 100%;
+    position: relative;  /* Important, allows absolute positioning for children */
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+
+.search-area input[type="text"]
+{
+      background-color: #f3f3f3;
+    border-radius: 5px;
+    border: none;
+    height: 20px;
+}
+
+.search-icon
+{
+    position: absolute;
+    right: 0;
+    z-index: 10;  /* Higher than the input */
+    padding: 10px;
+    color: #333333;
+
+}
+
+
+.chat-box .search-area
+{
+    height: 10%;
+}
+
+.chat-box .search-area input[type="text"] {
+  background-color: inherit;
+    border: none;
+    border-bottom: 4px solid #046262;
+    border-radius: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+
+body.dark-theme .chat-box .search-area input[type="text"]
+{
+    color: white;
+}
+
+.chat-box .search-box
+{
+    width: 100%;
+}
+
+
+.search-box
+{
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    height: 300px;
+    border: 1px solid #ccc;
+    overflow: auto;
+    z-index: 1500; /* To make sure it appears above other content */
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-item
+{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    z-index: 2000;
+    gap: 5px;
+}
+
+.search-item:hover
+{
+    opacity: 0.7;
+}
+
+
+body.light-theme .search-item
+{
+   color: #333333;
+}
+
+body.dark-theme .search-item
+{
+   color: white;
+}
+
+
+
+.selected {
+  opacity: 0.8;
+}
+
+
+
+
+.profile-pic
+{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.last-message {
+    font-size: 12px;
+    color: grey;
+}
+
+.hidden
+{
+    display: none;
+}
+
+/*Chat-box logic!*/
+#chat-icon-container
+{
+            cursor: pointer;
+            position: fixed;
+            right: 1%;
+            top: 91%;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #046262;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .unread-count {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 14px;
+}
+
+        .chat-icon
+        {
+            font-size: 24px;
+            position: fixed;
+        }
+
+
+
+        .chat-box
+        {
+            display: none;
+            position: fixed;
+            right: 1%;
+            bottom: 10%;
+            width: 350px;
+            height: 420px;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            background-color: #f5f8fa;
+            border-radius: 7px;
+        }
+
+
+       body.dark-theme .chat-box
+       {
+         background-color: #303030;
+         border: none;
+       }
+
+
+        .chat-header
+        {
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 3%;
+            border-bottom: 2px black solid;
+        }
+
+        .chat-profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-size: cover;
+    background-position: center;
+}
+
+
+        .chat-messages {
+            flex-grow: 1;
+            padding: 10px;
+            overflow-y: scroll;
+            height: 70%;
+        }
+
+
+        .input-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-top: 3px black ;
+        }
+
+
+        .chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+
+        }
+
+
+        .user-message, .recieverUser-message
+        {
+    padding: 10px;
+    margin: 5px;
+            text-align: right;
+    max-width: calc(50% - 30px);
+    border-radius: 15px;
+    position: relative;
+    clear: both;  /* New property */
+    overflow-wrap: break-word;
+
+}
+
+.user-message
+{
+    margin-right: auto;
+    margin-left: auto;
+
+}
+#user-message
+{
+    width: calc(99% - 30px); /* subtracting 30px to make room for send button */
+    padding-right: 30px; /* making room for the send button */
+    height: 100%;
+    border: none;
+    border-top: 3px solid grey;
+    background-color: inherit;
+}
+
+
+body.dark-theme .chat-box #user-message
+{
+    color: white;
+
+}
+
+
+
+
+.send-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+
+    border: none;
+    cursor: pointer;
+
+}
+
+.send-button i {
+    font-size: 18px;
+    color: #046262;
+}
+
+
+.user-message.align-right {
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    background-image: linear-gradient( 135deg, #FF96F9 10%, #C32BAC 100%);
+    color: white;
+}
+
+.recieverUser-message {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.recieverUser-message.align-left {
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-image: linear-gradient( 135deg, #3C8CE7 10%, #00EAFF 100%);
+    color: white;
+}
+
+
+.text-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.last-message {
+    font-size: 12px;
+    color: grey;
+}
+
+
+
+.time-stamp {
+    display: block; /* Display on a new line */
+    color: white;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+
+
+
+
+.chat-input {
+    display:none;/* Initially hidden */
+    height: 15%;
+}
+
+.chat-input button
+{
+    background-color: inherit;
+    cursor: pointer;
+}
+
+
+        .user-message {
+            text-align: right;
+            margin: 5px;
+
+        }
+
+        .recieverUser-message {
+            text-align: left;
+            margin: 5px;
+        }
+
+
+
+body.light-theme .chat-box .recieverUser-selection
+{
+    border-bottom: 2px solid white;
+}
+
+.recieverUser-selection
+{
+    display: flex;
+    cursor: pointer;
+    padding: 5px;
+    border-bottom: 1px solid black;
+    gap: 5%;
+    margin-bottom: 10px;
+}
+
+
+.recieverUser-selection:hover
+{
+    opacity: 70%;
+}
+
+
+
+        .active-recieverUser {
+            background-color: #f0f0f0;
+        }
+
+        .recieverUser-list {
+            display: none;
+            padding-top: 20px;
+                overflow-y: scroll;
+
+        }
+        .recieverUser-list-item {
+            cursor: pointer;
+            padding: 10px;
+            border: 1px solid #ccc;
+
+        }
+        #back-button {
+            display: none;
+            border: none;
+            background-color: inherit;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+
+        .unread-chat-box
+        {
+  font-weight: bold;  /* Making text bold */
+  border-bottom: 4px solid #f5f5f5;;  /* Making border more prominent */
+            background-color: #f5f5f5;  /* Slightly different background to stand out */
+}
+
+
+    .chat-icon-unread-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}
+
+/* For chat div */
+.chat-div-unread-count
+{
+    margin-left: auto;
+
+    background-color: inherit;
+    color: red;
+    font-size: 18px;
+}
+
+
+/*Input box */
+#Feed-box form
+{
+    margin-top: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 35%;
+    padding: 10px;
+    padding-left: 2px;
+    padding-top: 2px;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+}
+
+
+body.light-theme #Feed-box form
+{
+    background-color: white;
+    border: 1px solid white;
+}
+
+
+body.dark-theme #Feed-box form
+{
+    background-color: #303030;
+    color: white;
+}
+
+body.dark-theme #Feed-box input[type="text"]
+{
+
+    border-bottom: 1px solid white;
+    color: white;
+}
+
+
+#Feed-box input[type="text"]:focus
+{
+    outline: none;
+}
+
+body.light-theme #Feed-box input[type="text"]
+{
+    border-bottom: 1px solid black;
+}
+
+#text-and-media {
+    gap: 10px; /* Adds space between the text input and the media preview */
+}
+
+#Feed-box input[type="text"] {
+    width: 95%;
+    height: 100px;
+    background-color:  inherit;
+    border: none;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#media-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+#media-preview img,
+#media-preview video {
+    display: inline-block;  /* Change this to inline-block */
+    max-width: 100%;
+    max-height: 100%;
+    border: 2px saddlebrown;
+    border-radius: 5px;
+}
+
+
+#remove-preview {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 5px;
+    font-size: 18px;
+    z-index: 1;
+}
+
+#custom-file-upload {
+
+    margin-left: auto;
+}
+
+#icons {
+    display: flex;
+    align-items: center;
+    gap:10px;
+    margin-right: 10px;
+}
+
+
+        .icon-button-input i
+        {
+
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            line-height: 24px;
+            cursor: pointer;
+
+        }
+
+        .icon-button-input i:hover
+        {
+            opacity: 80%;
+        }
+
+
+        #Feed-box button[type="button"]
+        {
+            background-color: #046262;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        #Feed-box button[type="button"]:hover
+        {
+            background-color: #0c8bf1;
+        }
+
+
+.glow {
+  box-shadow: 0 0 10px #f5f8fa, 0 0 10px #f5f8fa, 0 0 10px #f5f8fa, 0 0 10px #f5f8fa ;
+  transition: box-shadow 0.5s ease-in-out;
+}
+
+    .tweet-box
+    {
+      margin-left: auto;
+    margin-right: auto;
+      margin-top: 20px;
+
+    padding: 10px;
+    margin-bottom: 10px;
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+    width: 35%;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  }
+
+
+body.light-theme .tweet-box
+{
+    background-color: white;
+    border: 1px solid #e6ecf0;
+}
+
+body.dark-theme .tweet-box
+{
+    background-color: #303030;
+}
+
+
+.tweet-text
+{
+        margin-top: 10px;
+
+  margin-right: 10px;
+  flex: 1;
+  overflow-wrap: break-word;
+          margin-bottom: 10px;
+
+}
+
+
+.tweet-timestamp
+{
+    margin-left: 10px;
+    color: white;
+  filter: brightness(1.2) contrast(1.4);
+    background-size: 20px 20px;
+}
+
+
+.tweet-timestamp span
+{
+    font-size: 10px;
+}
+
+
+
+.tweet-media
+{
+    margin-top: 10px;
+    max-width: 100%;
+    max-height: 300px;
+    margin-bottom: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+}
+    .Delete-Button
+{
+  background-color: #d42222;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 10px;
+  cursor: pointer;
+  margin-top: 2%;
+}
+
+.Delete-Button:hover
+{
+  opacity: 0.8;
+  background-color: #971515;
+    content: "\f2ed"; /* Unicode for 'fa-dumpster' (open bin) */
+}
+
+
+
+.social-stats
+{
+    justify-content: end;
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 8px;
+    right: auto;
+}
+
+.stat {
+  margin-right: 8px;
+}
+
+.social-panel
+{
+  display: flex;
+    box-sizing: border-box;
+    justify-content: center;  /* Horizontally center items */
+  align-items: center;      /* Vertically center items */
+}
+
+.social-button {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+}
+
+
+
+.icon {
+  margin-right: 8px;
+}
+
+.count {
+  margin-left: 4px;
+}
+
+.social-button:hover
+{
+  /*background-color: #f1f3f5;*/
+    opacity: 0.8;
+}
+
+.like-button:hover {
+  color: #007bff;
+}
+
+.comment-button:hover
+{
+  color: #28a745;
+}
+
+.share-button:hover
+{
+  color: #ffc107;
+}
+
+.delete-button:hover
+{
+  color: #dc3545;
+}
+
+
+.Delete-Button.disabled
+{
+  background-color: grey;
+  cursor: not-allowed;
+}
+
+.profile-section
+{
+    display: flex;
+    align-items: center;
+}
+
+
+.shared-message {
+  font-size: small;
+  color: #606060;
+  margin-bottom: 10px;
+}
+
+
+
+
+
+.profile-area {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+
+.comment-username
+{
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.comment-input {
+    display: block;
+    margin-top: 10px;
+}
+
+
+
+
+/*Profile */
+
+.profile-box
+{
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    padding-top: 30px;
+}
+
+
+body.light-theme .profile-box
+{
+    background-color: white;
+}
+
+body.dark-theme .profile-box
+{
+    background-color: #333333;
+}
+
+
+
+.message-button {
+    background-color: #046262;
+        color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 15px;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+}
+
+
+
+profile-pic-large
+{
+    width: 150px;
+    height: 150px;
+}
+
+.profile-container
+{
+
+    margin-top: 120px;
+    margin-left: 30%;
+    width: 40%;
+
+}
+
+
+
+
+#fillHereForProfile
+{
+     padding-left: 0;
+    margin-left: 0;
+}
+
+#fillHereForProfile .tweet-box
+{
+    width: 96%;
+    margin-left: 0;
+}
+
+
+.profile-pic-container
+{
+    border: 2px solid #000;
+
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.profile-pic-container img {
+    width: 100%;
+    height: auto;
+}
+
+.profile-info {
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+.profile-name
+        {
+        margin-left: 10px;
+    font-weight: bold;
+        }
+
+
+        .comment-box {
+        border: 1px solid #ccc;
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;}
+
+
+.profile-name-container {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.profile-bio {
+    font-size: 16px;
+    color: #666;
+    margin-top: 10px;
+}
+
+
+
+.settings-container
+
+{
+    margin-top: 5%;
+    padding: 20px;
+        width: 50%;
+        margin-left: 25%;
+}
+.tab
+{
+  display: flex;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  justify-content: space-between;
+
+}
+
+.tab button {
+  flex: 1;  /* New line: Make each button take up an equal amount of space */
+  background-color: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  text-align: center;  /* Optional: To center the text within each button */
+}
+
+
+.tab button:hover {
+  background-color: #ddd;
+}
+
+.tab button.active {
+  background-color: #ccc;
+}
+
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+  height: 50%; /* Set a fixed height */
+  position: relative; /* New line to establish positioning context */
+}
+
+
+
+
+
+#uploadProfileImageInputContainer
+{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    gap: 25px;
+}
+
+
+#uploadProfileImageContainer {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#uploadProfileImageCreateAccount {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 10px;
+    display: none; /* Initially hidden */
+    cursor: pointer;
+}
+
+/* The Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+#delete-account-button {
+  background-color: red;
+  color: white;
+}
+
+
+.update-button, #delete-account-button {
+  position: absolute; /* New line to position this button */
+  bottom: 10px; /* New line to set distance from the bottom */
+  right: 10px;
+    display: flex;
+  justify-content: flex-end;
+  border: none;
+  color: white;
+    font-weight: bold;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+
+}
+
+.update-button {
+background-color: #4CAF50; /* Green */
+
+}
+
+.update-button:hover, #delete-account-button:hover {
+  transform: scale(1.05);
+}
+
+
+
+
+    </style>
+
+
+    <script>
+
+
+const getLoggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+const loggedInUser = getLoggedInUser.username;
+
+ window.onload = function ()
+ {
+     loadTweets(loggedInUser);
+ }
+
+
+
+
+
+
+
+
+
+
+
+   //Creating left Hand Navigation Responsive
+   // toggle menu and remember the active tab
+window.addEventListener("DOMContentLoaded", function () {
+    const menuIcon = document.getElementById("menu-icon");
+    const navbar = document.querySelector(".navbar");
+    const navButtons = document.querySelectorAll(".nav-button");
+
+    // Component references
+    const feedBox = document.getElementById("Feed-box");
+    const profileContainer = document.getElementById("profile-container");
+    const settingsContainer = document.getElementById("settings-container");
+
+    // Function to show a specific component
+    function showComponent(tabId) {
+        // Hide all components
+         feedBox.style.visibility = "hidden";
+        feedBox.style.position = "absolute";
+
+        profileContainer.style.visibility = "hidden";
+        profileContainer.style.position = "absolute";
+
+        settingsContainer.style.visibility = "hidden";
+        settingsContainer.style.position = "absolute";
+
+        // Show the selected component
+        switch (tabId) {
+            case 'home-page':
+                feedBox.style.visibility = "visible";
+            feedBox.style.position = "static";
+                loadTweets(loggedInUser);
+                break;
+            case 'profile-page':
+                profileContainer.style.visibility = "visible";
+                profileContainer.style.position = "static";
+                fetchProfileData(loggedInUser);
+                loadTweets(loggedInUser,null, true);
+                break;
+            case 'settings-page':
+                settingsContainer.style.visibility = "visible";
+                settingsContainer.style.position = "static";
+                settingsContainer.style.position = 'fixed';
+                break;
+        }
+    }
+
+    // Load saved tab if exists or default to "Feed-box"
+    const savedTabId = localStorage.getItem('activeTab');
+    const initialTabId = savedTabId || 'home-page';
+
+    // Find the initial active button and show its component
+    const initialActiveButton = document.getElementById(initialTabId);
+    if (initialActiveButton) {
+        initialActiveButton.classList.add("nav-button-active", "light-theme");
+        showComponent(initialTabId);
+    }
+
+    // Add click event listeners to nav buttons
+    navButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            // Remove active class from all buttons
+            navButtons.forEach(btn => btn.classList.remove("nav-button-active"));
+
+            // Add active class to the clicked button
+            button.classList.add("nav-button-active");
+
+            // Save the active tab to localStorage
+            localStorage.setItem('activeTab', button.id);
+
+            // Show the appropriate component
+            showComponent(button.id);
+        });
+    });
+
+    menuIcon.addEventListener("click", function () {
+        if (navbar.style.display === "none" || navbar.style.display === "") {
+            navbar.style.display = "flex";
+        } else {
+            navbar.style.display = "none";
+        }
+    });
+});
+
+
+
+
+
+//-----------------------------Reusable functions-------------------------------------\\
+       function getAndFetchProfilePicture(username, profileDiv, isLarge = false)
+{
+    let profilePic = document.createElement("img");
+
+    const cachedProfilePic = localStorage.getItem(`profilePic_${username}`);
+    const defaultImage = localStorage.getItem("defaultImage");
+
+    // Use default image if already cached
+    if (!cachedProfilePic && defaultImage) {
+        profilePic.src = defaultImage;
+        profilePic.classList.add("profile-pic");
+        profileDiv.appendChild(profilePic);
+        return;
+    }
+
+    if (cachedProfilePic) {
+        // Use cached image
+        profilePic.src = cachedProfilePic;
+        profilePic.classList.add("profile-pic");
+        profileDiv.appendChild(profilePic);
+        return;
+    }
+
+    // Fetch profile picture from server
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", `/api/profile_pic/${username}`, true);
+    xhr.responseType = "blob";
+    xhr.onload = function() {
+        if (this.status === 200) {
+            let blob = this.response;
+            let img = URL.createObjectURL(blob);
+
+            let reader = new FileReader();
+            reader.readAsDataURL(blob);
+            reader.onloadend = function() {
+                let base64data = reader.result;
+                // Cache the profile picture as base64 in localStorage
+                localStorage.setItem(`profilePic_${username}`, base64data);
+            }
+
+            profilePic.src = img;
+        } else {
+            // Handle error, set to default image
+            if (defaultImage)
+            {
+                profilePic.src = defaultImage;
+            } else
+            {
+                profilePic.src = 'profiles/default.jpg';
+            }
+            // Cache the default image if it's not already cached
+            if (!defaultImage) {
+    fetch('profiles/default.jpg').then(response => response.blob()).then(blob => {
+        let reader = new FileReader();
+        reader.readAsDataURL(blob);
+        reader.onloadend = function() {
+            let base64data = reader.result;
+            localStorage.setItem('defaultImage', base64data);
+        }
+    });
+}
+
+        }
+    };
+    xhr.send();
+
+    profilePic.classList.add("profile-pic");
+    if (isLarge) {
+        profilePic.classList.add("profile-pic-container");
+    }
+    profileDiv.appendChild(profilePic);
+}
+
+
+function fetchProfileData(username, isSettings = false) {
+    // Try to fetch data from localStorage first
+    const cachedProfileData = localStorage.getItem(`profileData_${username}`);
+    if (cachedProfileData) {
+        // Parse and display the cached data
+        const data = JSON.parse(cachedProfileData);
+        displayProfileData(data, isSettings, username);
+        return; // Exit the function
+    }
+
+    // If not in cache, make an API call
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", `/api/profile?username=${username}`, true);
+    xhr.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            const data = JSON.parse(this.responseText);
+
+            // Cache the fetched data in localStorage
+            localStorage.setItem(`profileData_${username}`, JSON.stringify(data));
+
+            // Display the fetched data
+            displayProfileData(data, isSettings, username);
+        }
+    };
+    xhr.send();
+}
+
+function displayProfileData(data, isSettings, username) {
+    // Determine the target elements based on isSettings
+    let profileNameTarget = isSettings ? '.settings-profile-name' : '.profile-name-container';
+    let profileBioTarget = isSettings ? '.settings-profile-bio' : '.profile-bio';
+    let profilePicTarget = isSettings ? '.uploadProfileImageContainer' : '.profile-pic-container';
+
+    document.querySelector(profileNameTarget).innerText = data.username;
+    document.querySelector(profileBioTarget).innerText = data.bio;
+
+    // Fetch and set the profile picture
+    const profilePicContainer = document.querySelector(profilePicTarget);
+    profilePicContainer.innerHTML = ''; // Clear existing content
+    getAndFetchProfilePicture(data.username, profilePicContainer); // true to indicate it's a large picture
+
+    // If it is not settings, load the shared tweets for the user
+    if (!isSettings)
+    {
+        if(username!=loggedInUser)
+        {
+            loadTweets(username, null, true);
+        }
+
+    }
+}
+
+
+
+
+/*All the logics for adding post to the screen or getting the posts from the user*/
+function timeSince(serverTimeStr) {
+  // Parse the server time and get the current time
+  const serverTime = new Date(serverTimeStr).getTime() + 5 * 60 * 60 * 1000; // Adding 5 hours in milliseconds;
+  const currentTime = new Date().getTime();
+
+  // Calculate the time difference in seconds
+  let diffInSeconds = Math.floor((currentTime - serverTime) / 1000);
+
+  if (diffInSeconds < 60)
+  {
+    return "just now";
+  } else if (diffInSeconds < 3600) {
+    return `${Math.floor(diffInSeconds / 60)}mins`;
+  } else if (diffInSeconds < 86400) {
+    return `${Math.floor(diffInSeconds / 3600)}h`;
+  } else if (diffInSeconds < 604800) {
+    return `${Math.floor(diffInSeconds / 86400)}d`;
+  } else if (diffInSeconds < 2592000) {
+    return `${Math.floor(diffInSeconds / 604800)}w`;
+  } else if (diffInSeconds < 31536000) {
+    return `${Math.floor(diffInSeconds / 2592000)}m`;
+  } else {
+    return `${Math.floor(diffInSeconds / 31536000)}y`;
+  }
+}
+
+function addTweetToPage(tweetID, tweet, username, canDelete, media_url, timestamp, isShared = false, isInput = false)
+{
+
+            let theDiv = isShared ? document.getElementById('fillHereForProfile') : document.getElementById("fillHere");
+
+            let boxDiv = document.createElement("div");
+            boxDiv.classList.add("tweet-box");
+            boxDiv.classList.add("light-theme");
+
+
+
+
+            if (isShared)
+            {
+                let sharedDiv = document.createElement("div");
+                sharedDiv.classList.add("shared-message");
+                sharedDiv.innerHTML = `Have shared ${username}'s post.`;
+                boxDiv.appendChild(sharedDiv);
+  }
+
+    let profileDiv = document.createElement("div");
+    profileDiv.classList.add("profile-section");
+
+
+            getAndFetchProfilePicture(username, profileDiv);
+
+            let nameDiv = document.createElement("div");
+            nameDiv.classList.add("profile-name");
+            nameDiv.innerHTML = username;
+            profileDiv.appendChild(nameDiv);
+
+            boxDiv.appendChild(profileDiv);
+
+
+
+const output = isInput ? 'just now' : `${timeSince(timestamp)} <span class="material-symbols-outlined">hourglass_bottom</span>`;
+
+
+  // Create timestamp div
+  let timestampDiv = document.createElement("div");
+  timestampDiv.classList.add("tweet-timestamp");
+  timestampDiv.style.fontSize = "small"; // Set the font size
+  timestampDiv.style.color = "#606060"; // Set the font color
+  timestampDiv.innerHTML =  output;
+
+            profileDiv.appendChild(timestampDiv);
+
+            boxDiv.appendChild(profileDiv);
+
+
+
+
+            if (media_url)
+            {
+                let mediaElement;
+                if (media_url.endsWith('.png') || media_url.endsWith('.jpg') || media_url.endsWith('.jpeg') || media_url.endsWith('.gif')) {
+                    mediaElement = document.createElement('img');
+                }
+                else
+                {
+                    mediaElement = document.createElement('video');
+                }
+                mediaElement.src = media_url;
+                mediaElement.controls = true;
+                mediaElement.classList.add("tweet-media");
+                boxDiv.appendChild(mediaElement);
+            }
+
+            let tweetDiv = document.createElement("div");
+            tweetDiv.classList.add("tweet-text");
+            tweetDiv.innerHTML = tweet;
+            boxDiv.appendChild(tweetDiv);
+
+            let buttonsDiv = document.createElement("div");
+            buttonsDiv.classList.add("tweet-buttons");
+
+            // Create social stats panel
+            let socialStats = document.createElement("div");
+            socialStats.classList.add("social-stats");
+
+            let likesStat = document.createElement("span");
+            likesStat.classList.add("stat");
+            likesStat.innerHTML = 'Likes: <span class="count">0</span>';
+            let likesCountSpan = likesStat.querySelector(".count");
+            socialStats.appendChild(likesStat);
+
+
+
+            let commentsStat = document.createElement("span");
+            commentsStat.classList.add("stat");
+            commentsStat.id = "commentStat";
+            commentsStat.innerHTML = 'Comments: <span class="count">0</span>';
+            socialStats.appendChild(commentsStat);
+
+            let sharesStat = document.createElement("span");
+            sharesStat.classList.add("stat");
+            sharesStat.innerHTML = 'Shares: <span class="count">0</span>';
+            socialStats.appendChild(sharesStat);
+
+            // Append social stats panel to the tweet box
+            boxDiv.appendChild(socialStats);
+
+
+            let socialPanel = document.createElement("div");
+            socialPanel.classList.add("social-panel");
+
+            // Create Like Button
+            let likeButton = document.createElement("div");
+            likeButton.classList.add("social-button", "like-button");
+            likeButton.innerHTML = '<i class="ri-heart-line like-icon "></i><span class="social-button-text light-theme" style="margin-left: 5px;">Like</span>';
+            likeButton.setAttribute("data-liked", "false");
+            socialPanel.appendChild(likeButton);
+
+
+            // Call loadLikes here
+            loadLikes(tweetID, likeButton, likesCountSpan);
+
+            likeButton.onclick = function ()
+            {
+
+if (likeButton.getAttribute("data-liked") === "false") {
+    likeButton.querySelector(".like-icon").classList.remove("ri-heart-line");
+    likeButton.querySelector(".like-icon").classList.add("ri-heart-fill");
+    likeButton.querySelector(".like-icon").style.color = "red";
+  } else {
+    likeButton.querySelector(".like-icon").classList.add("ri-heart-line");
+    likeButton.querySelector(".like-icon").classList.remove("ri-heart-fill");
+    likeButton.querySelector(".like-icon").style.color = "inherit";
+  }
+                 handleLikeAction(likeButton, tweetID, loggedInUser);
+
+            };
+
+
+  // Create Comment Button
+    let commentButton = document.createElement("div");
+commentButton.classList.add("social-button", "comment-button");
+
+// Get the comments count from the localStorage
+const cachedComments = localStorage.getItem(`comments_${tweetID}`);
+const commentsCount = cachedComments ? JSON.parse(cachedComments).length : 0;
+
+// Update the innerHTML of commentsStat with the fetched count
+let countSpan = commentsStat.querySelector(".count");
+if (countSpan) {
+    countSpan.innerText = commentsCount;
+}
+
+commentButton.innerHTML = `<i class="ri-chat-3-line"></i><span class="social-button-text" style="margin-left: 5px;">Comment</span>`;
+socialPanel.appendChild(commentButton);
+
+commentButton.onclick = function () {
+    handleCommentButtonClick(tweetID, loggedInUser, this);
+};
+
+
+
+
+
+            // Create Share Button
+            let shareButton = document.createElement("div");
+            shareButton.classList.add("social-button", "share-button");
+            shareButton.innerHTML = '<i class="ri-share-line"></i><span class="social-button-text" style="margin-left: 5px;">Share</span>';
+            socialPanel.appendChild(shareButton);
+
+            shareButton.onclick = function ()
+            {
+                let shr_OBJ = JSON.stringify({tweetID: tweetID, username: loggedInUser});
+                let xhr = new XMLHttpRequest();
+                xhr.open("POST", "/api/share");
+                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                xhr.send(shr_OBJ);
+            };
+
+            // Create Delete Button
+            let deleteButton = document.createElement("div");
+            deleteButton.classList.add("social-button", "delete-button");
+            deleteButton.innerHTML = '<i class="ri-delete-bin-6-line delete-icon"></i><span class="social-button-text light-theme" style="margin-left: 5px;">Delete</span>';
+
+
+
+            if (canDelete)
+            {
+                deleteButton.addEventListener('mouseover', function() {
+  deleteButton.querySelector('.delete-icon').classList.remove('ri-delete-bin-6-line');
+  deleteButton.querySelector('.delete-icon').classList.add('ri-delete-bin-6-fill');
+});
+deleteButton.addEventListener('mouseout', function() {
+  deleteButton.querySelector('.delete-icon').classList.add('ri-delete-bin-6-line');
+  deleteButton.querySelector('.delete-icon').classList.remove('ri-delete-bin-6-fill');
+});
+
+                deleteButton.onclick = function ()
+                {
+                    let delObj;
+                    if(media_url)
+                    {
+                        delOBJ = JSON.stringify({tweetID: tweetID, containsMedia: 'yes'});
+                    }
+                    else
+                    {
+                        delOBJ = JSON.stringify({tweetID: tweetID, containsMedia: 'no'});
+                    }
+
+                    // Remove tweet from local storage cache
+                    const cachedTweets = JSON.parse(localStorage.getItem("tweets"));
+                    const filteredTweets = cachedTweets.filter((t) => t.tweetID !== tweetID);
+                    localStorage.setItem("tweets", JSON.stringify(filteredTweets));
+
+                    boxDiv.remove();
+                    let oReq2 = new XMLHttpRequest();
+                    oReq2.open("DELETE", "/api/tweet");
+                    oReq2.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                    oReq2.send(delOBJ);
+                };} else {
+                deleteButton.classList.add("disabled");
+                deleteButton.addEventListener('mouseover', function() {
+                deleteButton.querySelector('.delete-icon').classList.remove('ri-delete-bin-6-line');
+                deleteButton.querySelector('.delete-icon').classList.add('ri-delete-bin-2-line');
+});
+deleteButton.addEventListener('mouseout', function() {
+  deleteButton.querySelector('.delete-icon').classList.add('ri-delete-bin-6-line');
+  deleteButton.querySelector('.delete-icon').classList.remove('ri-delete-bin-2-line');
+});
+            }
+            socialPanel.appendChild(deleteButton);
+
+            // Append new social panel to the tweet box
+            boxDiv.appendChild(socialPanel);
+
+
+
+    if(isInput)
+    {
+        // Add the glow class to make it glow
+        boxDiv.classList.add("glow");
+
+        // Remove the glow effect after 3 seconds
+    setTimeout(function() {
+        boxDiv.classList.remove("glow");
+    }, 3000);
+
+    let audio = new Audio('insert_sound.mp3');
+    audio.play();
+
+    if (theDiv.firstChild) {
+        theDiv.insertBefore(boxDiv, theDiv.firstChild);
+    } else {
+        theDiv.appendChild(boxDiv);
+    }
+
+    }
+    else
+    {
+       theDiv.appendChild(boxDiv);
+    }
+
+}
+
+
+
+
+function loadTweets(loggedInUsername, username = null, shared = null)
+{
+  let url = "/api/tweet";
+  let params = [];
+  let cacheKey = "tweets";  // Default cache key for regular tweets
+
+  if (username) {
+    params.push(`username=${username}`);
+  }
+  if (shared) {
+    params.push(`username=${loggedInUsername}&shared=${shared}`);
+    cacheKey = `shared_tweets_${loggedInUsername}`;  // Cache key for shared tweets
+  }
+  if (params.length > 0) {
+    url += "?" + params.join("&");
+  }
+
+  // Load initial tweets from the cached item
+  const cachedTweetsStr = localStorage.getItem(cacheKey);
+  let cachedTweets = cachedTweetsStr ? JSON.parse(cachedTweetsStr) : [];
+
+  if (cachedTweets.length > 0) {
+    displayTweets(cachedTweets, loggedInUsername, !!shared);
+  }
+
+  // Always send API request to get tweets
+  let oReq = new XMLHttpRequest();
+  oReq.addEventListener("load", function () {
+    let newTweets = JSON.parse(oReq.responseText);
+    let updatedTweets = [...cachedTweets];
+
+    // Loop over each new tweet
+    for (let newTweet of newTweets) {
+      // Check if this tweetID is already in the cache
+      let existsInCache = cachedTweets.some(cachedTweet => cachedTweet.tweetID === newTweet.tweetID);
+
+      // If it doesn't exist in the cache, add it
+      if (!existsInCache)
+      {
+        updatedTweets.push(newTweet);
+
+
+        // Cache likes and comments for this newTweet
+        let likesKey = `likes_${newTweet.tweetID}`;
+        let commentsKey = `comments_${newTweet.tweetID}`;
+        localStorage.setItem(likesKey, JSON.stringify(newTweet.likes));
+        localStorage.setItem(commentsKey, JSON.stringify(newTweet.comments));
+
+
+      }
+    }
+
+    // Cache updated tweets
+    localStorage.setItem(cacheKey, JSON.stringify(updatedTweets));
+
+    // Re-display updated tweets
+    displayTweets(updatedTweets, loggedInUsername, !!shared);
+  });
+
+  oReq.open("GET", url);
+  oReq.send();
+}
+
+
+function handleCommentButtonClick(tweetID, username, buttonElement)
+{
+    const existingCommentBox = buttonElement.parentElement.nextElementSibling;
+
+    if (existingCommentBox && existingCommentBox.classList.contains("comment-box")) {
+        existingCommentBox.remove();
+        return;
+    }
+
+    // Check if the comments are cached in localStorage
+    const cachedComments = localStorage.getItem(`comments_${tweetID}`);
+    if (cachedComments) {
+        renderComments(JSON.parse(cachedComments), tweetID, username, buttonElement);
+        return;
+    }
+
+    // Fetch comments from the server
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", `/api/comments/${tweetID}`);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            const comments = JSON.parse(xhr.responseText);
+
+            // Cache the comments for 24 hours
+            localStorage.setItem(`comments_${tweetID}`, JSON.stringify(comments));
+            const now = new Date();
+            localStorage.setItem(`comments_expiry_${tweetID}`, now.getTime() + 24 * 60 * 60 * 1000);
+
+            // Render the comments
+            renderComments(comments, tweetID, username, buttonElement);
+        }
+    };
+    xhr.send();
+}
+
+function renderComments(comments, tweetID, username, buttonElement)
+{
+    // Create and append comment box
+    let commentBox = document.createElement("div");
+    commentBox.classList.add("comment-box");
+
+    // Create profile area but don't append it yet
+    let profileArea = document.createElement("div");
+    profileArea.classList.add("profile-area");
+
+    getAndFetchProfilePicture(username, profileArea);
+
+    let userNameDiv = document.createElement("div");
+    userNameDiv.innerText = username;
+    userNameDiv.classList.add("comment-username");
+
+    profileArea.appendChild(userNameDiv);
+
+    // Create comment input
+    let commentInput = document.createElement("input");
+    commentInput.type = "text";
+    commentInput.placeholder = "Write a comment";
+    commentInput.classList.add("comment-input");
+
+
+    commentInput.addEventListener("keypress", function (e)
+    {
+        if (e.key === "Enter") {
+            let cmnt_OBJ = JSON.stringify({ tweetID: tweetID, username: username, comment: commentInput.value });
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "/api/comment");
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhr.send(cmnt_OBJ);
+            commentInput.value = "";
+        }
+    });
+
+    // Loop through comments to create each comment div
+    comments.forEach(comment => {
+        let commentDiv = document.createElement("div");
+        let profileArea = document.createElement("div");
+        profileArea.classList.add("profile-area");
+
+        getAndFetchProfilePicture(comment.username, profileArea);
+
+        let userNameDiv = document.createElement("div");
+        userNameDiv.innerText = comment.username;
+        userNameDiv.classList.add("comment-username");
+
+        profileArea.appendChild(userNameDiv);
+
+        let commentText = document.createElement("div");
+        commentText.innerText = comment.comment;
+
+        commentText.style.marginLeft = "50px";
+
+        commentText.style.borderBottom = "1px solid #046262";
+
+
+        commentDiv.appendChild(profileArea);
+        commentDiv.appendChild(commentText);
+
+        commentBox.appendChild(commentDiv);
+    });
+
+
+    commentInput.style.height = "20px";
+    commentInput.style.marginLeft = "auto";
+
+    commentInput.style.borderBottomRightRadius = "20px";
+
+    // Append the comment input field at the bottom
+    commentBox.appendChild(profileArea);
+    commentBox.appendChild(commentInput);
+
+    // Update commentStat with the total number of comments
+    let commentsStat = document.getElementById("commentStat");
+    if (commentsStat) {
+        let countSpan = commentsStat.querySelector(".count");
+        if (countSpan) {
+            countSpan.innerText = comments.length;
+        }
+    }
+
+    // Insert the comment box below the parent element
+    buttonElement.parentElement.insertAdjacentElement('afterend', commentBox);
+}
+
+
+
+
+
+function displayTweets(tweets, loggedInUsername, isShare = false)
+{
+        let theDiv = isShare ? document.getElementById('fillHereForProfile') : document.getElementById("fillHere");
+    theDiv.innerHTML = "";
+    for (let i = 0; i < tweets.length; i++) {
+        let tweet = tweets[i];
+        let canDelete = tweet.username === loggedInUsername;
+        addTweetToPage(tweet.tweetID, tweet.tweet, tweet.username, canDelete, tweet.media_url, tweet.timestamp, isShare);
+    }
+
+}
+
+function showInputMediaPreview() {
+    const mediaInput = document.getElementById('media');
+    const previewDiv = document.getElementById('media-preview');
+
+    mediaInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                previewDiv.innerHTML = '';
+
+                // Image files
+                if (file.type.startsWith('image/')) {
+                    const img = new Image();
+                    img.src = event.target.result;
+                    previewDiv.appendChild(img);
+                }
+                // Video files
+                else if (file.type.startsWith('video/')) {
+                    const video = document.createElement('video');
+                    video.src = event.target.result;
+                    video.controls = true;
+                    previewDiv.appendChild(video);
+                }
+                // Audio files
+                else if (file.type.startsWith('audio/')) {
+                    const audio = document.createElement('audio');
+                    audio.src = event.target.result;
+                    audio.controls = true;
+                    previewDiv.appendChild(audio);
+                }
+                // Other file types (e.g., .pdf, .txt). Displaying the file name for simplicity.
+                else {
+                    const info = document.createElement('span');
+                    info.textContent = file.name;
+                    previewDiv.appendChild(info);
+                }
+
+                // Adjust the previewDiv width if needed
+                previewDiv.style.width = 'auto';
+            };
+
+            reader.readAsDataURL(file);
+        }
+    });
+
+    document.getElementById("remove-preview").addEventListener("click", function() {
+        previewDiv.innerHTML = '';
+        document.getElementById("tweet").style.width = '100%';
+        previewDiv.style.width = '0%';
+        document.getElementById("remove-preview").style.display = 'none';
+    });
+}
+
+
+
+
+function doneBeenClicked()
+{
+    let tweetInput = document.getElementById("tweet");
+    let mediaInput = document.getElementById("media");
+    const previewDiv = document.getElementById('media-preview');
+    let mediaFile = mediaInput.files[0];
+
+
+
+    // Prepare the form data
+    let formData = new FormData();
+    formData.append('tweet', tweetInput.value);
+    formData.append('username', loggedInUser);
+    if (mediaFile)
+    {
+        formData.append('media', mediaFile);
+    }
+
+    if(tweetInput.value!=null || mediaFile!=null){
+
+
+    // Send the tweet to the server
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "/api/tweet", true);
+    xhr.onreadystatechange = function ()
+{
+    if (xhr.readyState == 4 && xhr.status == 200)
+    {
+        let response = JSON.parse(xhr.responseText);
+        let media_url = response.media_url;
+        let tweetID = response.tweetID;
+        addTweetToPage(tweetID, tweetInput.value, loggedInUser, true, media_url, timeSince(Date), null,true );
+        tweetInput.value = "";
+    mediaInput.value = "";
+    previewDiv.innerHTML = ''; // Clear the media preview
+    document.getElementById("remove-preview").style.display = 'none'; // Hide the remove preview button
+    }
+};
+    xhr.send(formData);
+    }else
+    {
+        alert('Please Submit something in post!');
+    }
+}
+
+
+function loadLikes(tweetID, likeButton, likeCountSpan)
+{
+
+    let cachedLikes = JSON.parse(localStorage.getItem(`likes_${tweetID}`));
+
+    if (cachedLikes)
+    {
+        likeCountSpan.innerHTML = cachedLikes.length;
+        toggleLikeButton(likeButton, cachedLikes.includes(loggedInUser));
+        return;
+    }
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", `/api/likes/${tweetID}`);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            let likedUsers = JSON.parse(xhr.responseText);
+            likeCountSpan.innerHTML = likedUsers.length;  // Update like count
+
+            // If the current user has liked this tweet, change button color
+            toggleLikeButton(likeButton, likedUsers.includes(loggedInUser));
+
+            localStorage.setItem(`likes_${tweetID}`, JSON.stringify(likedUsers));
+        }
+    };
+    xhr.send();
+}
+
+
+function toggleLikeButton(likeButton, isLiked) {
+    if (isLiked)
+    {
+        likeButton.setAttribute("data-liked", "true");
+
+    likeButton.querySelector(".like-icon").classList.remove("ri-heart-line");
+    likeButton.querySelector(".like-icon").classList.add("ri-heart-fill");
+    likeButton.querySelector(".like-icon").style.color = "red";
+
+  }
+    else
+    {
+        likeButton.setAttribute("data-liked", "false");
+        likeButton.querySelector(".like-icon").classList.add("ri-heart-line");
+        likeButton.querySelector(".like-icon").classList.remove("ri-heart-fill");
+        likeButton.querySelector(".like-icon").style.color = "inherit";
+    }
+}
+
+//Handles like such as changing the state and changing color
+function handleLikeAction(likeButton, tweetID, username)
+{
+    let xhr = new XMLHttpRequest();
+    let apiEndpoint;
+    let isLiked = likeButton.getAttribute("data-liked") === "true";
+
+    if (isLiked)
+    {
+        apiEndpoint = "/api/like";
+        xhr.open("DELETE", apiEndpoint);
+        toggleLikeButton(likeButton, false);
+    }
+    else
+    {
+        apiEndpoint = "/api/like";
+        xhr.open("POST", apiEndpoint);
+        toggleLikeButton(likeButton, true);
+        let audio = new Audio('like_sound.mp3');
+             audio.play();
+        // Fetch the current list of liked users for a specific tweetID
+        let likedUsers = JSON.parse(localStorage.getItem(`likes_${tweetID}`)) || [];
+
+        // Find the index of the username you want to remove
+        const index = likedUsers.indexOf(username);
+
+        // Remove the username if found
+        if (index !== -1)
+        {
+            likedUsers.splice(index, 1);
+        }
+
+// If no liked users remain, remove the key-value pair entirely
+if (likedUsers.length === 0) {
+    localStorage.removeItem(`likes_${tweetID}`);
+} else {
+    // Otherwise, save the updated list back into localStorage
+    localStorage.setItem(`likes_${tweetID}`, JSON.stringify(likedUsers));
+}
+    }
+
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.send(JSON.stringify({ tweetID: tweetID, username: username }));
+}
+
+
+//Display comments in TweetBox
+function displayComments(comments, commentBox)
+{
+    comments.forEach(comment => {
+        let commentDiv = document.createElement("div");
+        let profileArea = document.createElement("div");
+        profileArea.classList.add("profile-area");
+
+        getAndFetchProfilePicture(comment.username, profileArea);
+
+        let userNameDiv = document.createElement("div");
+        userNameDiv.innerText = comment.username;
+        userNameDiv.classList.add("comment-username");
+
+        profileArea.appendChild(userNameDiv);
+
+        let commentText = document.createElement("div");
+        commentText.innerText = comment.comment;
+
+        commentDiv.appendChild(profileArea);
+        commentDiv.appendChild(commentText);
+
+        commentBox.appendChild(commentDiv);
+    });
+}
+
+
+/*-------------------------Settings page logic starts here---------------------------------------------*/
+//All the update functions are handled here such as changing username, password or bio
+function handleUpdateClick(type)
+{
+
+            let new_value;
+
+            if (type === 'profile_pic')
+            {
+                const fileInput = document.getElementById('profile-pic-file');
+                const file = fileInput.files[0];
+                if (!file)
+                {
+                    alert('Please select a file.');
+                    return;
+                }
+                new_value = file;
+            }
+            else if (type === 'name')
+            {
+                new_value = document.getElementById('new-name').value;
+            }
+            else if (type === 'bio')
+            {
+                new_value = document.getElementById('new-bio').value;
+            }
+
+            const formData = new FormData();
+            formData.append('new_value', new_value);
+
+            fetch(`/api/settings?type=${type}&username=${loggedInUser}`, {
+                method: 'PUT',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data =>
+            {
+                if (data.status === 'success')
+                {
+                    alert('Updated successfully.');
+                }
+                else
+                {
+                    alert('Failed to update.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+
+//open a tab in settings
+function openTab(evt, tabName)
+{
+    let i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+
+    // Fetch profile data if the "get-profile-pic" tab is opened
+    if (tabName === "get-profile-pic") {
+
+        const uploadProfileImageCreateAccount = document.getElementById('uploadProfileImageCreateAccount');
+        const uploadProfileSelectPictureText = document.getElementById('uploadProfileSelectPictureText');
+
+        fetchProfileData(loggedInUser, true);
+
+        const cachedProfilePic = localStorage.getItem(`profilePic_${loggedInUser}`);
+        if (cachedProfilePic)
+        {
+            uploadProfileImageCreateAccount.src = cachedProfilePic;
+            uploadProfileImageCreateAccount.style.display = 'block';
+            uploadProfileSelectPictureText.style.display = 'none';
+        }
+        else
+        {
+            uploadProfileImageCreateAccount.style.display = 'none';
+            uploadProfileSelectPictureText.style.display = 'block';
+        }
+    }
+}
+
+
+//Display the image in update
+function displaySettingsImage(event) {
+    const uploadProfileImageCreateAccount = document.getElementById('uploadProfileImageCreateAccount');
+    const uploadProfileSelectPictureText = document.getElementById('uploadProfileSelectPictureText');
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            uploadProfileImageCreateAccount.src = e.target.result;
+            uploadProfileImageCreateAccount.style.display = 'block';
+            uploadProfileSelectPictureText.style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+
+function openImagePreview() {
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("imgInModal");
+  const profileImg = document.getElementById("uploadProfileImageCreateAccount");
+
+  modal.style.display = "block";
+  modalImg.src = profileImg.src;
+}
+
+
+function closeModal() {
+  const modal = document.getElementById("imageModal");
+  modal.style.display = "none";
+}
+
+
+//Deletes account
+function deleteUser() {
+  const username = 'testUser'; // Replace with the actual username
+
+  // Show a confirmation box
+  if (window.confirm('Are you sure you want to delete your account?')) {
+    // Send a DELETE request
+    fetch(`/api/user?username=${username}`, {
+      method: 'DELETE'
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.status === 'success') {
+        alert('Account deleted successfully.');
+        // Redirect or do additional actions here
+      } else {
+        alert('Failed to delete the account.');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+}
+
+/*logs out of the website*/
+function outBeenClicked()
+{
+
+
+  // Remove from Local Storage
+  localStorage.removeItem('loggedInUser');
+
+  // Delete the cookie
+  document.cookie = 'myCookie12345=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+  window.location.href = "/";
+
+  let oReq = new XMLHttpRequest();
+  oReq.open("DELETE", "/api/login");
+  oReq.send();
+}
+
+
+//Change the theme to dark or light
+function toggleTheme() {
+    const body = document.body;
+    const buttonIcon = document.getElementById('themeToggleButtonIcon');
+
+    if (body.classList.contains('light-theme')) {
+        body.classList.replace('light-theme', 'dark-theme');
+        buttonIcon.className = 'ri-sun-line';
+        localStorage.setItem('theme', 'dark'); // store the theme in localStorage
+    } else {
+        body.classList.replace('dark-theme', 'light-theme');
+        buttonIcon.className = 'ri-moon-line';
+        localStorage.setItem('theme', 'light'); // store the theme in localStorage
+    }
+}
+
+
+//This function checks the local storage for detecting the theme which user have selected dark or light.
+function initializeTheme()
+{
+    const body = document.body;
+    const buttonIcon = document.getElementById('themeToggleButtonIcon');
+    const savedTheme = localStorage.getItem('theme'); // get the stored theme
+
+    // Check if there's a saved theme. If not set a default or just return.
+    if (savedTheme)
+    {
+        if (savedTheme === 'dark') {
+           buttonIcon.className = 'ri-sun-line';
+            body.classList.replace('light-theme', 'dark-theme');
+        } else if (savedTheme === 'light')
+        {
+          buttonIcon.className = 'ri-moon-line';
+          body.classList.replace('dark-theme', 'light-theme');
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', initializeTheme);
+
+
+
+    </script>
+
+</head>
+<body class="light-theme">
+
+    <header class="fixed-header light-theme">
+        <i class="fa fa-bars" id="menu-icon" style="font-size: 24px; color:white; margin-left: 20px; cursor: pointer;"></i>
+
+        <div class="right-section">
+            <button id="themeToggleButton" onclick="toggleTheme()">
+    <i id="themeToggleButtonIcon" class="ri-moon-line"></i>
+</button>
+
+    <div class="notification-area">
+    <div class="notification-header" onclick="toggleNotificationBox()">
+        <i class="ri-notification-3-line"></i>
+        <span id="notification-count" class="notification-count">0</span>
+    </div>
+    <div id="notification-box" class="notification-box hidden">
+        <!-- Notifications will appear here -->
+    </div>
+</div>
+            <!-- search box-->
+    <div class="search-area">
+    <input type="text" id="search-box" placeholder="Search users" style="padding-right: 30px; font-family: Arial, Helvetica, sans-serif;"> <!-- Increased padding-right to make room for icon -->
+    <i class="fa fa-search search-icon"></i>
+    <div id="search-results" class="search-box hidden"></div>
+</div>
+</div>
+
+    <nav class="navbar light-theme">
+        <button class="nav-button light-theme" id="home-page"><span class="icon-wrapper"><i class="ri-home-2-line" aria-hidden="true"></i></span><span class="button-text"> Home Page</span></button>
+        <button class="nav-button light-theme" id="profile-page"><span class="icon-wrapper"><i class="ri-user-3-line" aria-hidden="true"></i></span><span class="button-text"> Profile</span></button>
+        <button class="nav-button light-theme" id="settings-page"><span class="icon-wrapper"><i class="lni lni-cogs" aria-hidden="true"></i></span><span class="button-text"> Settings</span></button>
+        <button class="logout-button" onclick="outBeenClicked()"><span class="icon-wrapper"><i class="ri-logout-box-line" aria-hidden="true"></i></span><span class="button-text"> Logout</span></button>
+
+    </nav>
+
+    </header>
+    <div id="chat-icon-container" onclick="toggleChat()">
+        <i class="fa fa-envelope"></i>
+        <span id="unread-count" class="unread-count">2</span>
+    </div>
+    <div id="chat-box" class="chat-box light-theme">
+        <div class="chat-container">
+            <div id="chat-header" class="chat-header">
+                <button id="back-button" onclick="goBack()"><i class="ri-arrow-left-s-line" style="color: grey"></i></button>
+                <div id="chat-profile-pic" class="chat-profile-pic"></div>
+                <div id="chat-title"></div>
+            </div>
+            <div class="search-area" id="chat-search-area">
+    <input type="text" id="chat-search-box" placeholder="Find a user for chat" style="padding-right: 30px;"> <!-- Increased padding-right to make room for icon -->
+    <i class="fa fa-search search-icon" style="color: #046262"></i>
+    <div id="chat-search-results" class="search-box hidden"></div>
+</div>
+            <div class="recieverUser-list" id="recieverUser-list">
+
+            </div>
+            <div id="chat-messages" class="chat-messages"></div>
+            <div class="chat-input">
+    <div class="input-container">
+        <input type="text" id="user-message" placeholder="Type a message...">
+        <button class="send-button" onclick="sendMessage()">
+            <i class="fa fa-paper-plane"></i>
+        </button>
+    </div>
+</div>
+
+        </div>
+    </div>
+<div id="Feed-box" class="light-theme">
+        <form action="/api/tweet" method="POST" enctype="multipart/form-data" id="tweetForm">
+            <div id="text-and-media" style="width: 100%; display: flex; flex-direction: column; align-items: stretch;">
+                <input type="text" id="tweet" name="tweet" placeholder="What's on your mind today?">
+                <div id="media-preview" style="position: relative;">
+                    <span id="remove-preview" style="display: none; position: absolute; top: 0; right: 0; cursor: pointer;">&times;</span>
+                </div>
+            </div>
+            <div id="custom-file-upload" style="display: flex; justify-content: flex-end;">
+                <div id="icons">
+                    <label for="media" class="icon-button-input">
+                        <i class="fas fa-paperclip" onclick="showInputMediaPreview()"></i>
+                    </label>
+                    <input type="file" id="media" name="media" accept="image/*,video/*" style="display: none;">
+                    <button type="button" id="sendTweet" onClick="doneBeenClicked()" class="icon-button">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div id='fillHere'>
+            <br>
+        </div>
+    </div>
+
+
+<div class="profile-container" id="profile-container">
+    <div class="profile-box light-theme">
+        <div class="profile-pic-container">
+
+        </div>
+        <div class="profile-info">
+          <h1 class="profile-name-container"></h1>
+          <p class="profile-bio"></p>
+            <button id="message-button" class="message-button">Message</button> <!-- This is new -->
+    </div>
+        </div>
+    <div id='fillHereForProfile'>
+            <br>
+        </div>
+      </div>
+
+
+
+
+<div id="settings-container" class="settings-container">
+  <h1>Settings</h1>
+  <div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'get-profile-pic')">Update Profile Picture</button>
+    <button class="tablinks" onclick="openTab(event, 'update-username')">Update Username</button>
+    <button class="tablinks" onclick="openTab(event, 'update-bio')">Update Bio</button>
+    <button class="tablinks" onclick="openTab(event, 'delete-account')">Delete Account</button>
+  </div>
+
+  <div id="get-profile-pic" class="tabcontent">
+  <h3>Update Your Profile Picture</h3>
+
+  <label for="profile-pic-file"></label>
+  <div id="uploadProfileImageInputContainer">
+      <div id="uploadProfileImageContainer">
+          <img id="uploadProfileImageCreateAccount" style="display:none;" onclick="openImagePreview()">
+          <div id="uploadProfileSelectPictureText">Select a profile picture</div>
+      </div>
+      <input type="file" id="profile-pic-file" name="profile-pic-file" onchange="displaySettingsImage(event)">
+  </div>
+
+  <button class="update-button" onclick="handleUpdateClick('profile_pic')">Update Profile Picture</button>
+</div>
+
+
+
+
+<div id="update-username" class="tabcontent">
+  <h3>Update Your Username</h3>
+  <div class="settings-profile-name"></div>
+  <input type="text" id="new-name" placeholder="New Name">
+    <button class="update-button" onclick="handleUpdateClick('name')">Update Name</button>
+</div>
+
+  <div id="update-bio" class="tabcontent">
+    <h3>Update Your Profile Bio</h3>
+      <div class="settings-profile-bio"></div>
+      <textarea id="new-bio" placeholder="New Bio"></textarea>
+    <button class="update-button" onclick="handleUpdateClick('bio')">Update Bio</button>
+  </div>
+
+  <div id="delete-account" class="tabcontent">
+    <h3>Delete Account</h3>
+      <button id="delete-account-button" onclick="deleteUser()">Delete Account</button>
+  </div>
+    <!-- The Modal -->
+<div id="imageModal" class="modal">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <img class="modal-content" id="imgInModal">
+</div>
+
+
+</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+
+<script>
+
+const notificationBox = document.getElementById('notification-box');
+
+notificationBox.classList.add("light-theme");
+
+
+let notifications = 0;
+
+
+// Helper function to clear expired notifications from localStorage
+function clearExpiredNotifications() {
+  const storedData = localStorage.getItem('notifications');
+  if (storedData) {
+    const { timestamp } = JSON.parse(storedData);
+    const currentTime = new Date().getTime();
+    if (currentTime - timestamp > 24 * 60 * 60 * 1000) { // 24 hours in milliseconds
+      localStorage.removeItem('notifications');
+    }
+  }
+}
+
+async function fetchNotifications(username) {
+  try {
+    // Clear expired notifications
+    clearExpiredNotifications();
+
+    // Check if notifications are in localStorage and not expired
+    const storedData = localStorage.getItem('notifications');
+    if (storedData) {
+      const { notifications } = JSON.parse(storedData);
+      updateNotificationCount(notifications.length);
+      notifications.forEach(notification =>
+      {
+        addNotification(notification);
+      });
+      return;
+    }
+
+    // Fetch new notifications
+    fetch(`/api/notifications/${username}`)
+      .then(response => response.json())
+      .then(data => {
+        // Clear existing notifications
+        notificationBox.innerHTML = '';
+
+        // Update the notification count
+        updateNotificationCount(data.length);
+
+        // Populate new notifications
+        data.forEach(notification => {
+          addNotification(notification);
+        });
+
+        // Store notifications in localStorage with a timestamp
+        localStorage.setItem('notifications', JSON.stringify({
+          notifications: data,
+          timestamp: new Date().getTime(),
+        }));
+      });
+  } catch (error) {
+    console.error("Failed to fetch notifications:", error);
+  }
+}
+
+function addNotification(notification)
+        {
+
+            const notificationDiv = document.createElement('div');
+            notificationDiv.className = 'notification';
+
+    // Fetch the profile picture using existing function
+    getAndFetchProfilePicture(notification.sender, notificationDiv);
+
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'message';
+    if(notification.type === "comment")
+    {
+      messageDiv.textContent = `${notification.sender} has commented on your post`;
+    }
+    else
+    {
+        messageDiv.textContent = `${notification.sender} has ${notification.type}d your post`;
+    }
+    notificationDiv.appendChild(messageDiv);
+
+    const removeButton = document.createElement('div');
+    removeButton.className = 'remove-button';
+    removeButton.innerHTML = '<i class="fa fa-times"></i>';
+    removeButton.onclick = function ()
+    {
+        notificationBox.removeChild(notificationDiv);
+        updateNotificationCount(-1);
+        // Call DELETE API to remove notification from database
+    fetch(`/api/notification/${notification.notificationID}`, {
+        method: 'DELETE'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.message === "Notification removed successfully") {
+            // Remove the div from the front-end
+            notificationBox.removeChild(notificationDiv);
+            updateNotificationCount(-1);
+        } else {
+            console.error("Failed to remove notification");
+        }
+    });
+    };
+    notificationDiv.appendChild(removeButton);
+
+    notificationBox.appendChild(notificationDiv);
+}
+
+
+        function updateNotificationCount(change) {
+            notifications += change;
+            let notificationCount = document.getElementById('notification-count');
+            notificationCount.textContent = notifications;
+            checkNoNotifications();
+        }
+
+
+        function checkNoNotifications() {
+            let noNotificationsMessage = document.getElementById('no-notifications-message');
+
+            if (notifications === 0) {
+                if (!noNotificationsMessage) {
+                    noNotificationsMessage = document.createElement('div');
+                    noNotificationsMessage.id = 'no-notifications-message';
+                    noNotificationsMessage.textContent = 'No new notifications';
+                    notificationBox.appendChild(noNotificationsMessage);
+                }
+            } else {
+                if (noNotificationsMessage) {
+                    notificationBox.removeChild(noNotificationsMessage);
+                }
+            }
+        }
+
+        // Call checkNoNotifications on page load to handle the case where there are initially no notifications
+        document.addEventListener('DOMContentLoaded', checkNoNotifications);
+
+
+
+
+        function toggleNotificationBox() {
+            if (notificationBox.classList.contains('hidden')) {
+                notificationBox.classList.remove('hidden');
+            } else {
+                notificationBox.classList.add('hidden');
+            }
+        }
+
+
+
+async function setupSearch(inputElementId, resultsElementId, onClickCallback) {
+  try {
+    const searchBox = document.getElementById(inputElementId);
+    const searchResults = document.getElementById(resultsElementId);
+    const searchIcon = searchBox.nextElementSibling;
+
+    let debounceTimeout;
+
+    searchBox.addEventListener('keyup', async () => {
+      clearTimeout(debounceTimeout);
+      debounceTimeout = setTimeout(async () => {
+        const query = searchBox.value;
+        if (query.length > 1) {
+          const users = await getCachedOrFetchResults(query);
+          populateSearchResults(users, searchResults, onClickCallback, searchBox);
+        } else {
+          searchResults.classList.add('hidden');
+        }
+      }, 300); // 300ms debounce time
+    });
+
+    searchIcon.addEventListener('click', () => {
+    const items = document.querySelectorAll('.search-item');
+    if (searchResults.classList.contains('hidden')) {
+      // If results are hidden, simply show them and focus the input
+      searchResults.classList.remove('hidden');
+      searchBox.focus();
+    } else {
+      // If results are showing
+      if (items.length > 0) {
+        // If there are items, click the first one
+        items[0].click();
+        items[0].innerHTML = '';
+      } else {
+        // If no items, hide the results
+        searchResults.classList.add('hidden');
+      }
+    }
+  });
+  } catch (error) {
+    console.error("Failed to setup search:", error);
+  }
+}
+
+async function getCachedOrFetchResults(query) {
+  const cachedUsers = localStorage.getItem(`search_${query}`);
+  if (cachedUsers) {
+    return JSON.parse(cachedUsers);
+  }
+
+  try {
+    const response = await fetch(`/api/search?q=${query}`);
+    if (response.ok) {
+      const users = await response.json();
+      localStorage.setItem(`search_${query}`, JSON.stringify(users));
+      return users;
+    } else {
+      console.error("API call failed:", await response.text());
+    }
+  } catch (error) {
+    console.error("API call failed:", error);
+  }
+
+  return [];//returns empty if there is no searchable item
+}
+
+
+    let currentSelection = -1; // Initialize to -1
+
+function populateSearchResults(users, searchResults, onClickCallback, searchBox) {
+    searchResults.innerHTML = '';
+
+    if (users.length === 0) {
+        searchResults.innerHTML = '<div>No result found</div>';
+    } else {
+        users.forEach((user, index) => {
+            const profileDiv = document.createElement('div');
+            profileDiv.classList.add('search-item',"light-theme");
+            profileDiv.setAttribute('data-index', index);  // Store index
+            profileDiv.onclick = () => {
+                onClickCallback(user.username);
+                searchResults.classList.add('hidden');
+                searchBox.value = '';
+            };
+            getAndFetchProfilePicture(user.username, profileDiv);
+            const nameDiv = document.createElement('div');
+            nameDiv.innerHTML = user.username;
+            profileDiv.appendChild(nameDiv);
+            searchResults.appendChild(profileDiv);
+        });
+    }
+    searchResults.classList.remove('hidden');
+
+    searchBox.addEventListener('keydown', (e) => {
+  const items = document.querySelectorAll('.search-item');
+  if (items.length === 0) return;
+
+  switch (e.key) {
+    case 'ArrowDown':
+      if (currentSelection < items.length - 1) currentSelection++;
+      break;
+    case 'ArrowUp':
+      if (currentSelection > 0) currentSelection--;
+      break;
+    case 'Enter':
+      if (currentSelection > -1) {
+        items[currentSelection].click();
+        return;
+      }
+      break;
+    default:
+      return;
+  }
+
+  // Deselect all
+  items.forEach(item => item.classList.remove('selected'));
+
+  // Select the current item
+  if (currentSelection > -1) {
+    items[currentSelection].classList.add('selected');
+    items[currentSelection].scrollIntoView({ block: 'nearest', inline: 'start' });
+  }
+});
+
+}
+
+
+
+document.addEventListener("DOMContentLoaded", async () =>
+{
+  try
+  {
+    await setupSearch('chat-search-box', 'chat-search-results', initiateNewChat);
+    await setupSearch('search-box', 'search-results', openProfile);
+    await fetchNotifications(loggedInUser);
+  }
+  catch (error)
+  {
+    console.error("Failed to initialize:", error);
+  }
+});
+
+
+function openProfile(username)
+{
+    console.log("Opening profile of " + username);
+
+    fetchProfileData(username);
+    const feedBox = document.getElementById("Feed-box");
+    const profileContainer = document.getElementById("profile-container");
+    const settingsContainer = document.getElementById("settings-container");
+
+    const messageButton = document.getElementById("message-button");
+
+    messageButton.onclick = function ()
+    {
+        initiateNewChat(username);
+    }
+
+    // Update localStorage
+    localStorage.setItem('activeTab', 'profile-page');
+
+    feedBox.style.visibility = "hidden";
+    settingsContainer.style.visibility = "hidden";
+    profileContainer.style.position = "absolute";
+    feedBox.style.position = "absolute";
+    settingsContainer.style.position = "absolute";
+
+    profileContainer.style.visibility = "visible";
+    profileContainer.style.position = "static";
+}
+
+
+
+function formatTimestamp(timestamp) {
+  const date = new Date(timestamp);
+  return `${date.getHours()}:${date.getMinutes()}`;
+}
+
+
+
+
+// Connect to the Socket.IO server
+    var socket = io.connect('localhost:5000');
+
+
+    // Listen for 'receive_message' event and handle the received message
+    // Listen for 'receive_message' event and handle the received message
+    socket.on('receive_message', function(data) {
+
+            console.log("in-side function!");
+
+    /*let sender = data.sender;
+    let receiver = data.receiver;
+    let content = data.content;
+    let timestamp = data.timestamp;
+
+    console.log("Active Receiver User:", activerecieverUser);
+    console.log("Message Sender:", sender);
+
+    // If the sender is the active receiver user, append the message to chatMessages
+    if (sender === activerecieverUser || receiver === activerecieverUser) {
+
+    let audio = new Audio('message-recieved.mp3');
+
+        audio.play().then(() => {
+        console.log('Sound played successfully.');
+    }).catch((error) => {
+        console.error('Error playing sound:', error);
+    });
+
+        let messageDiv = document.createElement('div');
+        messageDiv.className = sender === loggedInUser ? 'user-message align-right' : 'recieverUser-message align-left';
+
+        let messageContent = document.createTextNode(content);
+        messageDiv.appendChild(messageContent);
+
+        let messageTime = document.createElement('span');
+        messageTime.className = 'time-stamp';
+        messageTime.textContent = formatTimestamp(timestamp);
+        messageDiv.appendChild(messageTime);
+
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
+
+        if (!uniqueChats[sender]) {
+            uniqueChats[sender] = { chats: [], unread: 0 };
+        }
+
+        uniqueChats[sender].chats.push(data);
+        localStorage.setItem(`chats_${loggedInUser}`, JSON.stringify(uniqueChats));
+    } else {
+        console.log("Else condition is true");
+        renderChatList(uniqueChats, loggedInUser);
+        localStorage.setItem(`chats_${loggedInUser}`, JSON.stringify(uniqueChats));
+        updateUnreadCount();
+    }*/
+});
+
+
+
+
+
+
+
+// Initialize chat history object
+let chatHistory = {};
+let unreadCount = 0;
+
+window.onload = function()
+{
+    chatBox.style.display = 'none';
+
+    let unreadCountElement = document.getElementById('unread-count');
+    unreadCountElement.classList.add('chat-icon-unread-count');
+
+    fetchChats(loggedInUser);
+    updateUnreadCount();
+}
+
+function initiateNewChat(username) {
+    // Check if the chat box is currently hidden
+    if (chatBox.style.display === 'none' || chatBox.style.display === '') {
+        // If so, open it
+        toggleChat();
+    }
+
+    if (uniqueChats[username]) {
+        // If the chat already exists, load it
+        switchrecieverUser(username, uniqueChats[username].chats);
+    } else {
+        // Otherwise, start a new chat
+        switchrecieverUser(username, []); // Empty array because it's a new chat
+        uniqueChats[username] = { chats: [], unread: 0 };
+    }
+
+    // Re-render chat list
+    renderChatList(uniqueChats, loggedInUser);
+    localStorage.setItem(`chats_${loggedInUser}`, JSON.stringify(uniqueChats));
+    fetchChats(loggedInUser);
+}
+
+
+function updateUnreadCount()
+{
+    const unreadCountElement = document.getElementById('unread-count');
+    if (unreadCount <= 0)
+    {
+        unreadCountElement.style.display = 'none';
+    } else {
+        unreadCountElement.style.display = 'block';
+        unreadCountElement.textContent = unreadCount;
+    }
+}
+
+let uniqueChats = {}; // Hold unique chats with the count
+
+async function fetchChats(username) {
+  try {
+
+    const response = await fetch(`/api/fetch_chats?username=${username}`);
+    const data = await response.json();
+
+    data.forEach(chat => {
+      let otherUser = chat.sender === username ? chat.receiver : chat.sender;
+      if (!uniqueChats[otherUser]) {
+        uniqueChats[otherUser] = { chats: [], unread: 0 };
+      }
+      uniqueChats[otherUser].chats.push(chat);
+      if (chat.sender !== username && !chat.mark_as_read) {
+        uniqueChats[otherUser].unread++;
+        unreadCount++;
+      }
+    });
+
+    // Cache the uniqueChats object
+    localStorage.setItem(`chats_${username}`, JSON.stringify(uniqueChats));
+
+      // Render the chat list
+    renderChatList(uniqueChats, username);
+
+
+  } catch (error) {
+    console.error("Failed to fetch chats:", error);
+  }
+
+}
+
+
+function renderChatList(uniqueChats, username) {
+  // Clear previous list to avoid duplicate divs
+  document.getElementById('recieverUser-list').innerHTML = '';
+
+  for (let otherUser in uniqueChats) {
+    let recieverUserSelection = document.createElement('div');
+    recieverUserSelection.className = 'recieverUser-selection';
+    recieverUserSelection.onclick = function ()
+    {
+
+      switchrecieverUser(otherUser, uniqueChats[otherUser].chats);
+      notifyServerChatOpened(username, otherUser);
+    };
+
+    let profilePicDiv = document.createElement('div');
+    getAndFetchProfilePicture(otherUser, profilePicDiv); // Fetch and set the profile picture
+    recieverUserSelection.appendChild(profilePicDiv);
+
+    let textDiv = document.createElement('div'); // New div to hold username and last message
+    textDiv.className = 'text-div';
+
+    let userNameText = document.createTextNode(otherUser);
+    textDiv.appendChild(userNameText);
+
+
+
+    // Add last message under the username
+    if (uniqueChats[otherUser].chats.length > 0) {
+      let lastMessage = uniqueChats[otherUser].chats[uniqueChats[otherUser].chats.length - 1].content;
+      let lastMessageDiv = document.createElement('div');
+      lastMessageDiv.className = 'last-message';
+      lastMessageDiv.textContent = lastMessage;
+      textDiv.appendChild(lastMessageDiv);
+    }
+
+    recieverUserSelection.appendChild(textDiv); // Append the textDiv instead of userNameText
+
+    if (uniqueChats[otherUser].unread > 0) {
+      recieverUserSelection.classList.add('unread-chat-box');
+      let unreadSpan = document.createElement('span');
+      unreadSpan.className = 'unread-count chat-div-unread-count';
+      unreadSpan.textContent = uniqueChats[otherUser].unread;
+      recieverUserSelection.appendChild(unreadSpan);
+    }
+
+    document.getElementById('recieverUser-list').appendChild(recieverUserSelection);
+  }
+  updateUnreadCount();
+}
+
+
+async function removeChat(username, otherUser)
+{
+  // Remove chat from the UI
+  let chatListDiv = document.getElementById('recieverUser-list');
+  let chatDivToRemove = chatListDiv.querySelector(`div[data-user='${otherUser}']`);
+  chatListDiv.removeChild(chatDivToRemove);
+
+  // Remove chat from localStorage
+  let localChats = localStorage.getItem(`chats_${username}`);
+  if (localChats) {
+    localChats = JSON.parse(localChats);
+    delete localChats[otherUser];
+    localStorage.setItem(`chats_${username}`, JSON.stringify(localChats));
+  }
+
+  // Remove chat from the database
+  try {
+    await fetch(`/api/remove_chat?username=${username}&otherUser=${otherUser}`, {
+      method: 'DELETE',
+    });
+
+    // Refresh chat list or remove the chat from the uniqueChats object and update localStorage
+    await fetchChats(username);
+  } catch (error) {
+    console.error("Failed to remove chat:", error);
+  }
+}
+
+
+
+async function notifyServerChatOpened(username, otherUser) {
+  try {
+    const response = await fetch(`/api/mark_as_read?username=${username}&otherUser=${otherUser}`, {
+      method: 'POST',
+    });
+    if(response.status === 200) {
+      // If server successfully notified, update the uniqueChats object and local storage
+      if (uniqueChats[otherUser]) {
+        uniqueChats[otherUser].unread = 0;
+      }
+      localStorage.setItem(`chats_${username}`, JSON.stringify(uniqueChats));
+
+      fetchChats(username); // refresh the chat list
+    }
+  } catch (error) {
+    console.error("Failed to notify server:", error);
+  }
+}
+
+
+function switchrecieverUser(otherUser, chats)
+{
+    activerecieverUser = otherUser;
+    document.getElementById('chat-title').textContent = otherUser;
+
+    // Clear existing profile pic in chat header
+    document.getElementById('chat-profile-pic').innerHTML = '';
+
+    // Set new profile pic in chat header
+    getAndFetchProfilePicture(otherUser, document.getElementById('chat-profile-pic'));
+
+    chatMessages.innerHTML = '';
+    chats.forEach(chat => {
+    let messageDiv = document.createElement('div');
+    messageDiv.className = chat.sender === loggedInUser ? 'user-message align-right' : 'recieverUser-message align-left';
+
+
+    let messageContent = document.createTextNode(chat.content);
+    messageDiv.appendChild(messageContent);
+
+    let messageTime = document.createElement('span');
+    messageTime.className = 'time-stamp';
+    messageTime.textContent = formatTimestamp(chat.timestamp);  // Using the formatTimestamp function
+    messageDiv.appendChild(messageTime);
+
+    chatMessages.appendChild(messageDiv);
+
+
+    const recieverUserDivs = document.querySelectorAll('.recieverUser-selection');
+    recieverUserDivs.forEach(div => {
+        if (div.textContent.includes(otherUser)) {
+            div.classList.remove('unread-chat-box');
+        }
+
+        const unreadSpan = div.querySelector('.chat-div-unread-count');
+            if (unreadSpan)
+            {
+                unreadCount = unreadCount - unreadSpan.textContent;
+                unreadSpan.textContent = '';
+            }
+            updateUnreadCount();
+    });
+
+  });
+
+    document.getElementById('chat-search-area').style.display = 'none';
+    chatMessages.style.display = 'block';
+    document.getElementById('recieverUser-list').style.display = 'none';
+    document.getElementById('back-button').style.display = 'block';
+    document.getElementById('chat-header').style.display = 'flex';
+    document.querySelector(".chat-input").style.display = 'flex';
+
+    chatHistory[otherUser] = chats;
+    chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
+}
+
+
+
+
+
+// Initialize UI elements
+let chatBox = document.getElementById('chat-box');
+const chatMessages = document.getElementById('chat-messages');
+let activerecieverUser = null;
+
+        let chatHead  = document.getElementById('chat-header');
+        let recieverUserList = document.getElementById("recieverUser-list");
+        let backButton = document.getElementById("back-button");
+        let chatInput = document.querySelector(".chat-input");
+
+
+        chatInput.style.display = 'none';
+        chatHead.style.display = 'none';
+
+        function toggleChat()
+        {
+            if (chatBox.style.display === 'none' || chatBox.style.display === '') {
+            chatBox.style.display = 'block';
+            backButton.style.display = 'none';
+        chatMessages.style.display = 'none';
+        recieverUserList.style.display = 'block';
+    } else {
+        chatBox.style.display = 'none';
+
+    }
+}
+
+
+function goBack() {
+    chatMessages.style.display = 'none';
+    recieverUserList.style.display = 'block';
+    backButton.style.display = 'none';
+    document.getElementById('chat-header').style.display = 'none';
+    chatInput.style.display = 'none';
+    document.getElementById('chat-search-area').style.display = 'flex';
+    activerecieverUser = null;
+}
+
+
+
+
+
+async function sendMessage()
+{
+  try
+  {
+   let userMessageInput = document.getElementById('user-message');
+    let userMessageText = userMessageInput.value;
+    userMessageInput.value = '';
+
+    let userMessage = document.createElement('div');
+    userMessage.className = 'user-message align-right';
+    userMessage.textContent = userMessageText;
+
+    let messageTime = document.createElement('span');
+    messageTime.className = 'time-stamp';
+    messageTime.textContent = formatTimestamp(new Date().getTime()); // Getting current time for the message
+    userMessage.appendChild(messageTime);
+
+    chatMessages.appendChild(userMessage);
+    chatHistory[activerecieverUser] = chatHistory[activerecieverUser] || [];
+    chatHistory[activerecieverUser].push(userMessage.outerHTML);
+
+    if (!uniqueChats[activerecieverUser]) {
+    uniqueChats[activerecieverUser] = { chats: [], unread: 0 };
+  }
+
+  uniqueChats[activerecieverUser].chats.push({
+    sender: loggedInUser,
+    receiver: activerecieverUser,
+    content: userMessageText,
+    timestamp: new Date().getTime()
+  });
+
+  renderChatList(uniqueChats, loggedInUser);
+  localStorage.setItem(`chats_${loggedInUser}`, JSON.stringify(uniqueChats));
+
+    const payload =
+        {
+        sender: loggedInUser, // replace with dynamic username if needed
+        receiver: activerecieverUser,
+        content: userMessageText
+    };
+
+   /*fetch('/api/send_message', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    }).then(response => {
+        if(response.status === 200) {
+            // Add to chat history
+        }
+    });*/
+
+    socket.emit('send_message', payload);
+
+  } catch (error) {
+    console.error("Failed to send message:", error);
+  }
+}
+    </script>
+</body>
+</html>

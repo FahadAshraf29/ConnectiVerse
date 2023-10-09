@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login / Create Account</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <style>
+
+
+
+
+    #sign-in-text {
+      font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  font-size: 30px;
+
+    }
+
+    #Login-Image
+    {
+      margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+
+     #connectiVerse-icon img
+     {
+
+         width: 200px;
+        height: auto;
+     }
+
+
+    #login-page {
+         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      border: 2px solid #E1E8ED;
+      width: 450px;
+      height: 600px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      box-sizing: border-box;
+
+    }
+
+    #login-page input[type="text"]::placeholder,
+    #login-page input[type="password"]::placeholder {
+      color: black;
+
+    }
+
+
+    #login-page input[type="text"]:focus::placeholder,
+    #login-page input[type="password"]:focus::placeholder {
+      color: #E23D4D;
+        content: attr(placeholder);
+      font-size: 10px;
+      position: absolute;
+
+      transform: translate(5%, 2%);
+    }
+
+
+    #login-page label {
+
+      display: none;
+      margin-bottom: 20px;
+
+    }
+
+    #login-page input[type="text"],
+    #login-page input[type="password"] {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+
+    }
+
+    #loginButton{
+      width: 100%;
+      padding: 10px;
+        background-color: #0A3B47;
+        color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 15px;
+    }
+
+    #loginButton:hover{
+      background-color: #0c85d0;
+      opacity: 0.8;
+        outline-offset: 3px;
+    }
+
+    #loginForm
+    {
+        margin-top: 15%;
+    }
+
+    #createAccountButton, #submitButton
+    {
+
+          width: 100%;
+          padding: 10px;
+          background-color: #ccc;
+          color: black;
+          border: none;
+          cursor: pointer;
+          border-radius: 15px;
+          margin-top: 10px;
+        }
+
+        #createAccountButton:hover {
+          background-color: #bbb;
+          opacity: 0.8;
+        }
+
+        /* Additional CSS for Create Account form */
+        #createAccountForm {
+          display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100%; /* Take full height of the parent div */
+}
+
+
+
+
+        #profileImageCreateAccount {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 2px solid #1DA1F2;
+        }
+
+        #imageInputContainer {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    justify-content: space-between;
+    gap: 20%;
+}
+
+#profileImageContainer {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+#profileImageCreateAccount {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    display: none; /* Initially hidden */
+}
+
+#selectProfilePictureText {
+    flex-grow: 1;
+}
+
+input[type="file"] {
+    margin-left: auto;
+}
+
+
+.loader {
+       margin: auto;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin
+{
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+    </style>
+
+    <script>
+
+
+    window.onload = function ()
+    {
+        let cookie = document.cookie;
+        if (cookie.includes("myCookie12345"))
+        {
+            // Hide the login page and show the second page
+            window.location.href = "/index.html";
+        }
+        else
+        {
+            alert("Please Login again session expired!");
+        }
+};
+
+        function clickNext()
+    {
+  // Show loader
+    let loginButton = document.getElementById("loginButton");
+    let originalButtonHTML = loginButton.innerHTML;
+    loginButton.innerHTML = '<div class="loader"></div>';
+    loginButton.disabled = true;
+
+
+  let id = document.getElementById("username").value;
+  let pass = document.getElementById("password").value;
+
+  let credentials = JSON.stringify({ username: id, password: pass });
+  let login = new XMLHttpRequest();
+  login.open("POST", "/api/login");
+  login.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  login.send(credentials);
+
+  login.onreadystatechange = function ()
+  {
+    if (login.readyState == 4 && login.status == 200) {
+
+        // Hide loader and re-enable button
+        loginButton.innerHTML = originalButtonHTML;
+        loginButton.disabled = false;
+
+      // Store logged-in user's information in localStorage
+      localStorage.setItem('loggedInUser', JSON.stringify({ username: id }));
+
+      // Hide the login page and show the second page
+      window.location.href = "/index.html";
+    }
+    else if (login.status == 401)
+    {
+      alert("Not authorized")
+        // Hide loader and re-enable button
+        loginButton.innerHTML = originalButtonHTML;
+        loginButton.disabled = false;
+    }
+  };
+}
+
+    function showCreateAccount()
+    {
+        document.getElementById('sign-in-input').style.display = 'none';
+            document.getElementById('createAccountForm').style.display = 'flex';
+    }
+
+        function displayImage(event) {
+    let reader = new FileReader();
+    reader.onload = function() {
+        let output = document.getElementById('profileImageCreateAccount');
+        if (!output) {
+            output = document.createElement('img');
+            output.id = 'profileImageCreateAccount';
+            let container = document.getElementById('profileImageContainer');
+            container.appendChild(output);
+        }
+        output.src = reader.result;
+        output.style.display = 'block'; // Show the image
+        document.getElementById('selectProfilePictureText').style.display = 'none'; // Hide the text
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
+
+function createAccount() {
+    let username = document.getElementById("newUsername");
+    let password = document.getElementById("newPassword");
+    let bio = document.getElementById("bio").value;
+    let fileInput = document.getElementById("profilePictureCreateAccount");
+    let file = fileInput.files[0];
+
+    // Validate username and password
+    if (!username.value.trim()) {
+        username.style.border = "1px solid red";
+        alert("Username is required");
+        return;
+    } else {
+        username.style.border = "1px solid black";
+    }
+
+    if (!password.value.trim()) {
+        password.style.border = "1px solid red";
+        alert("Password is required");
+        return;
+    } else {
+        password.style.border = "1px solid black";
+    }
+
+    // Show loader
+    let submitButton = document.getElementById("submitButton");
+    let originalButtonHTML = submitButton.innerHTML;
+    submitButton.innerHTML = '<div class="loader"></div>';
+    submitButton.disabled = true;
+
+    let formData = new FormData();
+    formData.append('username', username.value);
+    formData.append('password', password.value);
+    formData.append('bio', bio);
+    formData.append('profile_pic', file);
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "/api/create_account", true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            // Hide loader and re-enable button
+            submitButton.innerHTML = originalButtonHTML;
+            submitButton.disabled = false;
+
+            if (xhr.status == 200)
+            {
+                let response = JSON.parse(xhr.responseText);
+                if (response.status === "success") {
+                    alert("Account created successfully");
+                    document.getElementById('createAccountForm').style.display = 'none';
+                    document.getElementById('sign-in-input').style.display = 'block';
+                } else {
+                    alert("Error: " + response.message);
+                }
+            } else {
+                alert("Username Already taken" +"\n \n" + "Error: Received status code " + xhr.status);
+            }
+        }
+    };
+    xhr.send(formData);
+}
+
+    </script>
+
+</head>
+<body>
+    <div id="login-page">
+        <div id="sign-in-input">
+    <div id="Login-Image">
+        <div id="connectiVerse-icon">
+        <img  src="logo-B0cgv4t6l-transformed.png" width="100" height="100" style="color: red" >
+</div>
+      <div id="sign-in-text">
+        Sign in to ConnectiVerse
+      </div>
+    </div>
+    <form id="loginForm" action="/api/login" method="POST">
+      <div>
+        <label for="name">Username</label>
+        <input type="text" id="username" name="Name" placeholder="Phone, email or username">
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="Password" placeholder="Password">
+      </div>
+      <button type="button" id="loginButton" onClick="clickNext()">Login</button>
+        <button type="button" id="createAccountButton" onClick="showCreateAccount()">Create Account</button>
+    </form>
+            </div>
+        <form id="createAccountForm">
+            <h1>Create Account</h1>
+            <div>
+                <label for="newUsername">Username</label>
+                <input type="text" id="newUsername" name="newUsername" placeholder="Username">
+            </div>
+            <div>
+                <label for="newPassword">Password</label>
+                <input type="password" id="newPassword" name="newPassword" placeholder="Password">
+            </div>
+            <div>
+                <label for="bio">Bio</label>
+                <input type="text" id="bio" name="bio" placeholder="Bio">
+            </div>
+            <div>
+            <label for="profilePictureCreateAccount">Profile Picture</label>
+    <div id="imageInputContainer">
+        <div id="profileImageContainer">
+            <!-- Empty div to hold the profile image -->
+            <div id="selectProfilePictureText">Profile picture</div>
+        </div>
+
+        <input type="file" id="profilePictureCreateAccount" name="profilePictureCreateAccount" onchange="displayImage(event)">
+    </div>
+                </div>
+
+            <button type="button" id="submitButton" onClick="createAccount()">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
